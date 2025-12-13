@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function HeroSection() {
@@ -19,9 +20,11 @@ export default function HeroSection() {
           and manage your brilliance in one secure place.
         </p>
 
-        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-          Get Started
-        </button>
+        <Link href="/login">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+            Get Started
+          </button>
+        </Link>
       </div>
     </div>
   )
