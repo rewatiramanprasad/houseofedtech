@@ -54,7 +54,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+      
       <header className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <h1 className="text-2xl font-bold text-gray-900">IdeaFlow</h1>
@@ -72,15 +72,15 @@ export default function Dashboard() {
         </div>
       </header>
 
-      {/* Main Content */}
+  
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Sidebar - New Idea Form */}
+         
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-sm p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-6">New Idea</h2>
 
-              {/* Title Input */}
+             
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Title
@@ -94,7 +94,7 @@ export default function Dashboard() {
                 />
               </div>
 
-              {/* Description Textarea */}
+             
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Description
@@ -108,7 +108,7 @@ export default function Dashboard() {
                 />
               </div>
 
-              {/* Enhance Button */}
+             
               <button
                 onClick={handleEnhance}
                 className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors mb-4"
@@ -116,7 +116,7 @@ export default function Dashboard() {
                 Enhance with AI
               </button>
 
-              {/* AI Suggestion Box */}
+             
               {aiSuggestion && (
                 <div className="bg-gray-50 rounded-lg p-4 mb-4">
                   <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
@@ -128,7 +128,7 @@ export default function Dashboard() {
                 </div>
               )}
 
-              {/* Save Button */}
+              
               <button
                 onClick={handleSaveIdea}
                 className="w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 rounded-lg border border-gray-200 transition-colors"
@@ -138,9 +138,9 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Right Content - Ideas List */}
+         
           <div className="lg:col-span-2">
-            {/* Search and Filters */}
+         
             <div className="bg-white rounded-xl shadow-sm p-4 mb-6">
               <div className="flex flex-col md:flex-row gap-4 items-center">
                 <input
@@ -173,7 +173,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Ideas List */}
+            
             <div className="space-y-4">
               {ideas.map((idea) => (
                 <div
