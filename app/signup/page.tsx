@@ -4,10 +4,8 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import {  z } from 'zod'
-import {
-  Form,
-} from '@/components/ui/form'
+import { z } from 'zod'
+import { Form } from '@/components/ui/form'
 import FormInput from '@/components/formInput'
 import AddUser from './action'
 import { toast } from 'sonner'
@@ -40,10 +38,10 @@ export default function SignUpForm() {
     form.reset()
     if (result.success) {
       toast.success('User added successfully')
+      router.push('/login')
     } else {
       toast.error(result.message)
     }
-    router.push('/list')
   }
 
   return (
