@@ -87,7 +87,7 @@ export default function SignUpForm() {
               <div>
                 <FormInput<SingUpFormSchemaType>
                   form={form}
-                  fieldName={'password'}
+                  fieldName={'confirmPassword'}
                   placeHolder="••••••••"
                   formType="password"
                 />

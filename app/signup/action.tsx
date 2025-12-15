@@ -1,3 +1,4 @@
+'use server'
 import React from 'react'
 import { SingUpFormSchemaType } from './page'
 import { prisma } from '@/lib/prisma'
