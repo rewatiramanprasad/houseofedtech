@@ -11,6 +11,10 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    env:
+      DIRECT_URL: ${{ secrets.DIRECT_URL }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      SECRET: ${{ secrets.SECRET }}
 
     strategy:
       matrix:
