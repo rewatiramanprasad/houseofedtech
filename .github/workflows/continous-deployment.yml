@@ -13,6 +13,7 @@ jobs:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       SECRET: ${{ secrets.JWT_SECRET }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      PRISMA_CLIENT_ENGINE_TYPE: 'library'
 
     steps:
       # Checkout repo
