@@ -16,26 +16,21 @@ jobs:
       PRISMA_CLIENT_ENGINE_TYPE: 'library'
 
     steps:
-      # Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      # Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # Build project
       - name: Build Next.js App
         run: npm run build
 
-      # Deploy to Vercel
       - name: Deploy to Vercel
         run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
         env:
