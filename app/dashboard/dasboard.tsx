@@ -7,7 +7,6 @@ import { Ideas } from './page'
 export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
   const [title, setTitle] = useState('')
   const [filteredIdeas, setFilteredIdeas] = useState(ideas)
-  // const [description, setDescription] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOrder, setSortOrder] = useState('Newest')
   const [aiSuggestion, setAiSuggestion] = useState('')
@@ -36,35 +35,7 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
     setFilteredIdeas(updatedIdeas)
   }, [ideas, searchQuery, sortOrder])
 
-  // const ideasMock = [
-  //   {
-  //     id: 1,
-  //     title: 'Smart Plant Waterer',
-  //     description:
-  //       'IoT device that monitors soil moisture levels and automatically waters plants when needed. Includes a companion app for tracking plant health over time.',
-  //     author: 'Alex',
-  //     avatar: '👤',
-  //     updatedAt: '2 hours ago',
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Subscription Manager SaaS',
-  //     description:
-  //       'A centralized dashboard to track all recurring subscriptions, alert users before renewals, and identify unused services to save money.',
-  //     author: 'Sarah',
-  //     avatar: '👤',
-  //     updatedAt: 'yesterday',
-  //   },
-  //   {
-  //     id: 3,
-  //     title: 'Fitness Gamification Platform',
-  //     description:
-  //       'Turn daily steps and workouts into RPG character progression. Users battle monsters and level up by achieving real-world fitness goals.',
-  //     author: 'Alex',
-  //     avatar: '👤',
-  //     updatedAt: '3 days ago',
-  //   },
-  // ]
+
 
   const handleEnhance = () => {
     setAiSuggestion(
