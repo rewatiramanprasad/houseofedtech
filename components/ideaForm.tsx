@@ -43,9 +43,7 @@ function IdeaForm() {
       toast.error(result.message)
     }
   }
-  const handleSaveIdea = () => {
-    console.log('Saving idea:')
-  }
+  
 
   return (
     <div className="bg-white rounded-xl shadow-sm p-6">

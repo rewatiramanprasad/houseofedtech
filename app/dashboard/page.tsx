@@ -24,7 +24,7 @@ async function page() {
         }
       }
     })
-    console.log('Ideas fetched in page.tsx:', ideas)
+    
   return (
     <Dashboard ideas={ideas} />
   )

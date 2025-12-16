@@ -48,7 +48,6 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
   }
 
   const handleUpdate = (idea: Ideas) => {
-    console.log('Updating idea:', idea)
     setIsUpdating(true)
     setUpdatingIdea(idea)
    }
