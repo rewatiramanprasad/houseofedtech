@@ -1,41 +1,43 @@
 'use client'
 import IdeaForm from '@/components/ideaForm'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import { Ideas } from './page'
+import DeleteAction from './DeleteAction'
 
 export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
   const [title, setTitle] = useState('')
-  const [filteredIdeas, setFilteredIdeas] = useState(ideas)
   const [searchQuery, setSearchQuery] = useState('')
-  const [sortOrder, setSortOrder] = useState('Newest')
+  type SortOrder = 'newest' | 'oldest'
+  const [sortOrder, setSortOrder] = useState<SortOrder>('newest')
   const [aiSuggestion, setAiSuggestion] = useState('')
-  useEffect(() => {
-    let updatedIdeas = ideas
+  const filteredIdeas = useMemo(() => {
+    return ideas
       .filter((idea) => {
-        const matchesSearch =
-          idea.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          idea.originalText.toLowerCase().includes(searchQuery.toLowerCase())
-        return matchesSearch
-      })
-      .sort((a: Ideas, b: Ideas) => {
-        if (sortOrder === 'newest') {
-          return (
-            new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-          )
-        }
+        const query = searchQuery.toLowerCase()
 
-        if (sortOrder === 'oldest') {
-          return (
-            new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
-          )
-        }
-        return 0
+        return (
+          idea.title.toLowerCase().includes(query) ||
+          idea.originalText.toLowerCase().includes(query)
+        )
       })
-    setFilteredIdeas(updatedIdeas)
+      .sort((a, b) => {
+        switch (sortOrder) {
+          case 'newest':
+            return (
+              new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+            )
+
+          case 'oldest':
+            return (
+              new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
+            )
+
+          default:
+            return 0
+        }
+      })
   }, [ideas, searchQuery, sortOrder])
-
-
 
   const handleEnhance = () => {
     setAiSuggestion(
@@ -81,7 +83,7 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
                 <div className="flex gap-4">
                   <select
                     value={sortOrder}
-                    onChange={(e) => setSortOrder(e.target.value)}
+                    onChange={(e) => setSortOrder(e.target.value as SortOrder)}
                     className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
                   >
                     <option value="newest">Sort: Newest</option>
@@ -103,6 +105,7 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
                 )
 
                 return (
+                  
                   <div
                     key={id}
                     className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow"
@@ -110,7 +113,7 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       {title}
                     </h3>
-
+                    <form action={DeleteAction.bind(null,id)}>
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-xs">
                         {'👤'}
@@ -139,6 +142,7 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
                         Delete
                       </button>
                     </div>
+                      </form>
                   </div>
                 )
               })}
