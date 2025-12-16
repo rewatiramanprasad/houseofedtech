@@ -29,9 +29,9 @@ export type IdeaMinAggregateOutputType = {
   userId: string | null
   originalText: string | null
   enhancedText: string | null
-  tone: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  title: string | null
 }
 
 export type IdeaMaxAggregateOutputType = {
@@ -39,9 +39,9 @@ export type IdeaMaxAggregateOutputType = {
   userId: string | null
   originalText: string | null
   enhancedText: string | null
-  tone: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  title: string | null
 }
 
 export type IdeaCountAggregateOutputType = {
@@ -49,9 +49,9 @@ export type IdeaCountAggregateOutputType = {
   userId: number
   originalText: number
   enhancedText: number
-  tone: number
   createdAt: number
   updatedAt: number
+  title: number
   _all: number
 }
 
@@ -61,9 +61,9 @@ export type IdeaMinAggregateInputType = {
   userId?: true
   originalText?: true
   enhancedText?: true
-  tone?: true
   createdAt?: true
   updatedAt?: true
+  title?: true
 }
 
 export type IdeaMaxAggregateInputType = {
@@ -71,9 +71,9 @@ export type IdeaMaxAggregateInputType = {
   userId?: true
   originalText?: true
   enhancedText?: true
-  tone?: true
   createdAt?: true
   updatedAt?: true
+  title?: true
 }
 
 export type IdeaCountAggregateInputType = {
@@ -81,9 +81,9 @@ export type IdeaCountAggregateInputType = {
   userId?: true
   originalText?: true
   enhancedText?: true
-  tone?: true
   createdAt?: true
   updatedAt?: true
+  title?: true
   _all?: true
 }
 
@@ -164,9 +164,9 @@ export type IdeaGroupByOutputType = {
   userId: string
   originalText: string
   enhancedText: string
-  tone: string
   createdAt: Date
   updatedAt: Date
+  title: string
   _count: IdeaCountAggregateOutputType | null
   _min: IdeaMinAggregateOutputType | null
   _max: IdeaMaxAggregateOutputType | null
@@ -195,9 +195,9 @@ export type IdeaWhereInput = {
   userId?: Prisma.StringFilter<"Idea"> | string
   originalText?: Prisma.StringFilter<"Idea"> | string
   enhancedText?: Prisma.StringFilter<"Idea"> | string
-  tone?: Prisma.StringFilter<"Idea"> | string
   createdAt?: Prisma.DateTimeFilter<"Idea"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Idea"> | Date | string
+  title?: Prisma.StringFilter<"Idea"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -206,9 +206,9 @@ export type IdeaOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   originalText?: Prisma.SortOrder
   enhancedText?: Prisma.SortOrder
-  tone?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -220,9 +220,9 @@ export type IdeaWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"Idea"> | string
   originalText?: Prisma.StringFilter<"Idea"> | string
   enhancedText?: Prisma.StringFilter<"Idea"> | string
-  tone?: Prisma.StringFilter<"Idea"> | string
   createdAt?: Prisma.DateTimeFilter<"Idea"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Idea"> | Date | string
+  title?: Prisma.StringFilter<"Idea"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
@@ -231,9 +231,9 @@ export type IdeaOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   originalText?: Prisma.SortOrder
   enhancedText?: Prisma.SortOrder
-  tone?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   _count?: Prisma.IdeaCountOrderByAggregateInput
   _max?: Prisma.IdeaMaxOrderByAggregateInput
   _min?: Prisma.IdeaMinOrderByAggregateInput
@@ -247,18 +247,18 @@ export type IdeaScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"Idea"> | string
   originalText?: Prisma.StringWithAggregatesFilter<"Idea"> | string
   enhancedText?: Prisma.StringWithAggregatesFilter<"Idea"> | string
-  tone?: Prisma.StringWithAggregatesFilter<"Idea"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Idea"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Idea"> | Date | string
+  title?: Prisma.StringWithAggregatesFilter<"Idea"> | string
 }
 
 export type IdeaCreateInput = {
   id?: string
   originalText: string
   enhancedText: string
-  tone?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  title: string
   user: Prisma.UserCreateNestedOneWithoutIdeasInput
 }
 
@@ -267,18 +267,18 @@ export type IdeaUncheckedCreateInput = {
   userId: string
   originalText: string
   enhancedText: string
-  tone?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  title: string
 }
 
 export type IdeaUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   originalText?: Prisma.StringFieldUpdateOperationsInput | string
   enhancedText?: Prisma.StringFieldUpdateOperationsInput | string
-  tone?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutIdeasNestedInput
 }
 
@@ -287,9 +287,9 @@ export type IdeaUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   originalText?: Prisma.StringFieldUpdateOperationsInput | string
   enhancedText?: Prisma.StringFieldUpdateOperationsInput | string
-  tone?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type IdeaCreateManyInput = {
@@ -297,18 +297,18 @@ export type IdeaCreateManyInput = {
   userId: string
   originalText: string
   enhancedText: string
-  tone?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  title: string
 }
 
 export type IdeaUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   originalText?: Prisma.StringFieldUpdateOperationsInput | string
   enhancedText?: Prisma.StringFieldUpdateOperationsInput | string
-  tone?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type IdeaUncheckedUpdateManyInput = {
@@ -316,9 +316,9 @@ export type IdeaUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   originalText?: Prisma.StringFieldUpdateOperationsInput | string
   enhancedText?: Prisma.StringFieldUpdateOperationsInput | string
-  tone?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type IdeaListRelationFilter = {
@@ -336,9 +336,9 @@ export type IdeaCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   originalText?: Prisma.SortOrder
   enhancedText?: Prisma.SortOrder
-  tone?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  title?: Prisma.SortOrder
 }
 
 export type IdeaMaxOrderByAggregateInput = {
@@ -346,9 +346,9 @@ export type IdeaMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   originalText?: Prisma.SortOrder
   enhancedText?: Prisma.SortOrder
-  tone?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  title?: Prisma.SortOrder
 }
 
 export type IdeaMinOrderByAggregateInput = {
@@ -356,9 +356,9 @@ export type IdeaMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   originalText?: Prisma.SortOrder
   enhancedText?: Prisma.SortOrder
-  tone?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  title?: Prisma.SortOrder
 }
 
 export type IdeaCreateNestedManyWithoutUserInput = {
@@ -407,18 +407,18 @@ export type IdeaCreateWithoutUserInput = {
   id?: string
   originalText: string
   enhancedText: string
-  tone?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  title: string
 }
 
 export type IdeaUncheckedCreateWithoutUserInput = {
   id?: string
   originalText: string
   enhancedText: string
-  tone?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  title: string
 }
 
 export type IdeaCreateOrConnectWithoutUserInput = {
@@ -455,45 +455,45 @@ export type IdeaScalarWhereInput = {
   userId?: Prisma.StringFilter<"Idea"> | string
   originalText?: Prisma.StringFilter<"Idea"> | string
   enhancedText?: Prisma.StringFilter<"Idea"> | string
-  tone?: Prisma.StringFilter<"Idea"> | string
   createdAt?: Prisma.DateTimeFilter<"Idea"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Idea"> | Date | string
+  title?: Prisma.StringFilter<"Idea"> | string
 }
 
 export type IdeaCreateManyUserInput = {
   id?: string
   originalText: string
   enhancedText: string
-  tone?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  title: string
 }
 
 export type IdeaUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   originalText?: Prisma.StringFieldUpdateOperationsInput | string
   enhancedText?: Prisma.StringFieldUpdateOperationsInput | string
-  tone?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type IdeaUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   originalText?: Prisma.StringFieldUpdateOperationsInput | string
   enhancedText?: Prisma.StringFieldUpdateOperationsInput | string
-  tone?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type IdeaUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   originalText?: Prisma.StringFieldUpdateOperationsInput | string
   enhancedText?: Prisma.StringFieldUpdateOperationsInput | string
-  tone?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -503,9 +503,9 @@ export type IdeaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   userId?: boolean
   originalText?: boolean
   enhancedText?: boolean
-  tone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  title?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["idea"]>
 
@@ -514,9 +514,9 @@ export type IdeaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   userId?: boolean
   originalText?: boolean
   enhancedText?: boolean
-  tone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  title?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["idea"]>
 
@@ -525,9 +525,9 @@ export type IdeaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   userId?: boolean
   originalText?: boolean
   enhancedText?: boolean
-  tone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  title?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["idea"]>
 
@@ -536,12 +536,12 @@ export type IdeaSelectScalar = {
   userId?: boolean
   originalText?: boolean
   enhancedText?: boolean
-  tone?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  title?: boolean
 }
 
-export type IdeaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "originalText" | "enhancedText" | "tone" | "createdAt" | "updatedAt", ExtArgs["result"]["idea"]>
+export type IdeaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "originalText" | "enhancedText" | "createdAt" | "updatedAt" | "title", ExtArgs["result"]["idea"]>
 export type IdeaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -562,9 +562,9 @@ export type $IdeaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     userId: string
     originalText: string
     enhancedText: string
-    tone: string
     createdAt: Date
     updatedAt: Date
+    title: string
   }, ExtArgs["result"]["idea"]>
   composites: {}
 }
@@ -993,9 +993,9 @@ export interface IdeaFieldRefs {
   readonly userId: Prisma.FieldRef<"Idea", 'String'>
   readonly originalText: Prisma.FieldRef<"Idea", 'String'>
   readonly enhancedText: Prisma.FieldRef<"Idea", 'String'>
-  readonly tone: Prisma.FieldRef<"Idea", 'String'>
   readonly createdAt: Prisma.FieldRef<"Idea", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Idea", 'DateTime'>
+  readonly title: Prisma.FieldRef<"Idea", 'String'>
 }
     
 

@@ -1,7 +1,7 @@
 'use server'
 import React from 'react'
 import { SingUpFormSchemaType } from './page'
-import { prisma } from '@/lib/prisma'
+import  prisma  from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
 

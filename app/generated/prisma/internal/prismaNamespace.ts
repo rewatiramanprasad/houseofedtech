@@ -613,9 +613,9 @@ export const IdeaScalarFieldEnum = {
   userId: 'userId',
   originalText: 'originalText',
   enhancedText: 'enhancedText',
-  tone: 'tone',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  title: 'title'
 } as const
 
 export type IdeaScalarFieldEnum = (typeof IdeaScalarFieldEnum)[keyof typeof IdeaScalarFieldEnum]
