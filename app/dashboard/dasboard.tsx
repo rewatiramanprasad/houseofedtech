@@ -4,9 +4,11 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import { Ideas } from './page'
 import DeleteAction from './DeleteAction'
+import UpdateIdeaForm from '@/components/updateIdeaForm'
 
 export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
-  const [title, setTitle] = useState('')
+  const [updatingIdea, setUpdatingIdea] = useState<Ideas|null>(null)
+  const [isUpdating, setIsUpdating] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   type SortOrder = 'newest' | 'oldest'
   const [sortOrder, setSortOrder] = useState<SortOrder>('newest')
@@ -45,29 +47,28 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
     )
   }
 
+  const handleUpdate = (idea: Ideas) => {
+    console.log('Updating idea:', idea)
+    setIsUpdating(true)
+    setUpdatingIdea(idea)
+   }
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">IdeaFlow</h1>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-lg">
-                👤
-              </div>
-              <span className="font-medium text-gray-700">Alex Morgan</span>
-            </div>
-            <button className="text-gray-400 hover:text-gray-600 transition-colors">
-              Log out
-            </button>
-          </div>
-        </div>
-      </header>
+      
 
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1">
-            <IdeaForm />
+            {isUpdating ? (
+              <UpdateIdeaForm
+                idea={updatingIdea!}
+                setIsUpdating={setIsUpdating}
+                onCancel={() => setIsUpdating(false)}
+              />
+            ) : (
+              <IdeaForm />
+            )}
           </div>
 
           <div className="lg:col-span-2">
@@ -105,7 +106,6 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
                 )
 
                 return (
-                  
                   <div
                     key={id}
                     className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow"
@@ -113,7 +113,6 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       {title}
                     </h3>
-                    <form action={DeleteAction.bind(null,id)}>
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-xs">
                         {'👤'}
@@ -131,18 +130,24 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
 
                     <div className="flex items-center justify-between">
                       <div className="flex gap-4">
-                        <button className="text-blue-500 hover:text-blue-600 font-medium text-sm transition-colors">
+                        <button
+                          onClick={() => {
+                            handleUpdate(idea)
+                          }}
+                          className="text-blue-500 hover:text-blue-600 font-medium text-sm transition-colors"
+                        >
                           Edit
                         </button>
                         <button className="text-gray-400 hover:text-gray-600 font-medium text-sm transition-colors">
                           Enhance
                         </button>
                       </div>
-                      <button className="text-gray-400 hover:text-red-500 font-medium text-sm transition-colors">
-                        Delete
-                      </button>
-                    </div>
+                      <form action={DeleteAction.bind(null, id)}>
+                        <button className="text-gray-400 hover:text-red-500 font-medium text-sm transition-colors">
+                          Delete
+                        </button>
                       </form>
+                    </div>
                   </div>
                 )
               })}
