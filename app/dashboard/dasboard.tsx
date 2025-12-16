@@ -41,11 +41,7 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
       })
   }, [ideas, searchQuery, sortOrder])
 
-  const handleEnhance = () => {
-    setAiSuggestion(
-      'A mobile application that scans ingredients in your fridge and suggests personalized recipes based on dietary restrictions...'
-    )
-  }
+  
 
   const handleUpdate = (idea: Ideas) => {
     setIsUpdating(true)
@@ -96,11 +92,11 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
 
             <div className="space-y-4">
               {filteredIdeas.map((idea) => {
-                const { id, title, originalText, updatedAt } = idea
+                const { id, title, enhancedText, updatedAt } = idea
                 const email = idea.user?.email || 'Unknown'
                 const author = email.split('@')[0]
                 const updatedAtFormatted: string = formatDistanceToNow(
-                  new Date(String(idea.updatedAt)),
+                  new Date(String(updatedAt)),
                   { addSuffix: true }
                 )
 
@@ -124,7 +120,7 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
                     </div>
 
                     <p className="text-gray-600 mb-4 leading-relaxed">
-                      {originalText}
+                      {enhancedText.slice(0, 200) + '...'}
                     </p>
 
                     <div className="flex items-center justify-between">

@@ -44,7 +44,8 @@ function FormTextArea<T extends FieldValues>({
           <FormControl>
             <Textarea
               id={fieldName}
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              className="w-full px-4 py-2 max-h-48 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  resize-none
+    overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300"
               placeholder={placeHolder}
               disabled={disabled}
               rows={rows}

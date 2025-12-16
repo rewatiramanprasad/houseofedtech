@@ -23,7 +23,7 @@ const formSchema = z.object({
 export type IdeaFormSchemaType = z.infer<typeof formSchema>
 
 function IdeaForm() {
-   
+  const [isEnhancing, setIsEnhancing] = useState(false)
   const form = useForm<IdeaFormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,28 +33,34 @@ function IdeaForm() {
     },
   })
   const aiSuggestion = form.watch('aiSuggestion')
-  const [aiSuggestionText, setAiSuggestion] = useState('')
-const handleEnhance = async () => {
-  const values = form.getValues()
+  // const [aiSuggestionText, setAiSuggestion] = useState('')
+  const handleEnhance = async () => {
+    const values = form.getValues()
 
-  if (!values.title || !values.description) {
-    toast.error('Please enter title and description first')
-    return
+    if (!values.title || !values.description) {
+      toast.error('Please enter title and description first')
+      return
+    }
+    try {
+      setIsEnhancing(true)
+      const result = await enhanceIdeaAction({
+        title: values.title,
+        description: values.description,
+      })
+
+      if (result.success) {
+        form.setValue('aiSuggestion', result.text)
+        // setAiSuggestion(result.text || '')
+        toast.success('Idea enhanced')
+      } else {
+        toast.error(result.message)
+      }
+    } catch {
+      toast.error('Something went wrong')
+    } finally {
+      setIsEnhancing(false)
+    }
   }
-
-  const result = await enhanceIdeaAction({
-    title: values.title,
-    description: values.description,
-  })
-
-  if (result.success) {
-    form.setValue('aiSuggestion', result.text)
-    setAiSuggestion(result.text||'')
-    toast.success('Idea enhanced')
-  } else {
-    toast.error(result.message)
-  }
-}
 
   async function onSubmit(values: IdeaFormSchemaType) {
     const result = await addIdeaAction(values)
@@ -66,7 +72,6 @@ const handleEnhance = async () => {
       toast.error(result.message)
     }
   }
-  
 
   return (
     <div className="bg-white rounded-xl shadow-sm p-6">
@@ -98,25 +103,34 @@ const handleEnhance = async () => {
           <button
             type={'button'}
             onClick={handleEnhance}
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors mb-4"
+            className={`w-full font-semibold py-3 rounded-lg transition-colors mb-4
+      ${
+        isEnhancing
+          ? 'bg-gray-300 cursor-not-allowed'
+          : 'bg-blue-500 hover:bg-blue-600 text-white'
+      }
+  `}
           >
-            Enhance with AI
+            {isEnhancing ? 'Enhancing...' : 'Enhance with AI'}
           </button>
 
           {aiSuggestion && (
             <div className="bg-gray-50 rounded-lg p-4 mb-4">
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                AI SUGGESTION
-              </div>
+              
               <p className="text-sm text-gray-700 leading-relaxed">
-                {aiSuggestion}
+                <FormTextArea<IdeaFormSchemaType>
+                  form={form}
+                  fieldName={'aiSuggestion'}
+                  placeHolder="Describe your idea..."
+                  rows={6}
+                />
               </p>
             </div>
           )}
 
           <button
             type="submit"
-            className="w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 rounded-lg border border-gray-200 transition-colors"
+            className="w-full bg-white hover:bg-blue-600 hover:text-white text-gray-700 font-medium py-3 rounded-lg border border-blue-600 transition-colors"
           >
             Save Idea
           </button>
