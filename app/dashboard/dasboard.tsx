@@ -1,6 +1,6 @@
 'use client'
 import IdeaForm from '@/components/ideaForm'
-import React, { useEffect, useMemo, useState } from 'react'
+import  {  useMemo, useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import { Ideas } from './page'
 import DeleteAction from './DeleteAction'
