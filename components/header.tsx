@@ -1,11 +1,15 @@
 import { logoutAction } from '@/app/dashboard/logout'
+import { Lightbulb } from 'lucide-react'
 import React from 'react'
 
 function header({ user }: { user: { email: string } | null }) {
   return (
     <header className="bg-white border-b border-gray-200 px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">IdeaFlow</h1>
+        <div className="flex flex-row gap-2 justify-center">
+          <Lightbulb className="text-primary" />
+          <h1 className="text-2xl font-bold text-gray-900">IdeaFlow</h1>
+        </div>
         <div className="flex items-center gap-4">
           {user && (
             <div className="flex items-center gap-3">

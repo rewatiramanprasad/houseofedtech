@@ -1,7 +1,6 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { z } from 'zod'
-import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import FormInput from './formInput'
@@ -25,14 +24,12 @@ export type IdeaFormSchemaType = z.infer<typeof formSchema>
 
 export default function UpdateIdeaForm({
   idea,
-  setIsUpdating,
   onCancel,
 }: {
   idea: Ideas
   setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>
   onCancel?: () => void
 }) {
-  const router = useRouter()
   const form = useForm<IdeaFormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -67,7 +64,6 @@ export default function UpdateIdeaForm({
       toast.error(result.message)
     }
   }
-  
 
   return (
     <div className="bg-white rounded-xl shadow-sm p-6">

@@ -1,5 +1,4 @@
 'use server'
-import React from 'react'
 import { SingUpFormSchemaType } from './page'
 import  prisma  from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
@@ -26,7 +25,7 @@ export default async function AddUser(
       }
     }
     const hashedPassword = await bcrypt.hash(password, 10)
-    const user = await prisma.user.create({
+     await prisma.user.create({
       data: {
         email,
         password: hashedPassword,

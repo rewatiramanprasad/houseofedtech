@@ -12,9 +12,7 @@ function Navigation() {
       </div>
       <div className=" flex  gap-4">
         <Link href="/login">
-          <Button  variant={'outline'}>
-            Login
-          </Button>
+          <Button variant={'outline'}>Login</Button>
         </Link>
         <Link href="/signup">
           <Button variant={'default'}>Signup</Button>

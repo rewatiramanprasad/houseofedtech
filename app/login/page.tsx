@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
 import { z } from 'zod'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -63,20 +62,6 @@ export default function LoginForm() {
           >
             <div className="space-y-6">
               <div>
-                {/* <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Email address
-                </label> */}
-                {/* <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                /> */}
                 <FormInput<LoginFormSchemaType>
                   form={form}
                   fieldName={'email'}
@@ -86,20 +71,6 @@ export default function LoginForm() {
               </div>
 
               <div>
-                {/* <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Password
-                </label> */}
-                {/* <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                /> */}
                 <FormInput<LoginFormSchemaType>
                   form={form}
                   fieldName={'password'}

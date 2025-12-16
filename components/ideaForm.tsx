@@ -1,7 +1,5 @@
 'use client'
-import React, { useState } from 'react'
 import { z } from 'zod'
-import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import FormInput from './formInput'
@@ -23,7 +21,7 @@ const formSchema = z.object({
 export type IdeaFormSchemaType = z.infer<typeof formSchema>
 
 function IdeaForm() {
-  const router = useRouter()
+  
   const form = useForm<IdeaFormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
