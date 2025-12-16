@@ -12,7 +12,7 @@ export default function Dashboard({ ideas }: { ideas: Ideas[] }) {
   const [searchQuery, setSearchQuery] = useState('')
   type SortOrder = 'newest' | 'oldest'
   const [sortOrder, setSortOrder] = useState<SortOrder>('newest')
-  const [aiSuggestion, setAiSuggestion] = useState('')
+ 
   const filteredIdeas = useMemo(() => {
     return ideas
       .filter((idea) => {

@@ -7,6 +7,8 @@ import { toast } from 'sonner'
 import { Form } from '@/components/ui/form'
 import FormTextArea from './formTextarea'
 import addIdeaAction from '@/app/dashboard/AddIdeaAction'
+import { enhanceIdeaAction } from '@/app/dashboard/EnhancedIdeaAction'
+import { useState } from 'react'
 
 const formSchema = z.object({
   title: z.string().min(8, {
@@ -21,7 +23,7 @@ const formSchema = z.object({
 export type IdeaFormSchemaType = z.infer<typeof formSchema>
 
 function IdeaForm() {
-  
+   
   const form = useForm<IdeaFormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,6 +32,29 @@ function IdeaForm() {
       aiSuggestion: '',
     },
   })
+  const aiSuggestion = form.watch('aiSuggestion')
+  const [aiSuggestionText, setAiSuggestion] = useState('')
+const handleEnhance = async () => {
+  const values = form.getValues()
+
+  if (!values.title || !values.description) {
+    toast.error('Please enter title and description first')
+    return
+  }
+
+  const result = await enhanceIdeaAction({
+    title: values.title,
+    description: values.description,
+  })
+
+  if (result.success) {
+    form.setValue('aiSuggestion', result.text)
+    setAiSuggestion(result.text||'')
+    toast.success('Idea enhanced')
+  } else {
+    toast.error(result.message)
+  }
+}
 
   async function onSubmit(values: IdeaFormSchemaType) {
     const result = await addIdeaAction(values)
@@ -53,13 +78,6 @@ function IdeaForm() {
           className="space-y-8"
         >
           <div className="mb-4">
-            {/* <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="e.g., AI-powered Recipe App"
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            /> */}
             <FormInput<IdeaFormSchemaType>
               form={form}
               fieldName={'title'}
@@ -69,13 +87,6 @@ function IdeaForm() {
           </div>
 
           <div className="mb-4">
-            {/* <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder=""
-              rows={6}
-              className=""
-            /> */}
             <FormTextArea<IdeaFormSchemaType>
               form={form}
               fieldName={'description'}
@@ -84,11 +95,15 @@ function IdeaForm() {
             />
           </div>
 
-          <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors mb-4">
+          <button
+            type={'button'}
+            onClick={handleEnhance}
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors mb-4"
+          >
             Enhance with AI
           </button>
 
-          {/* {aiSuggestion && (
+          {aiSuggestion && (
             <div className="bg-gray-50 rounded-lg p-4 mb-4">
               <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
                 AI SUGGESTION
@@ -97,7 +112,7 @@ function IdeaForm() {
                 {aiSuggestion}
               </p>
             </div>
-          )} */}
+          )}
 
           <button
             type="submit"

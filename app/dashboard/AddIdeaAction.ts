@@ -4,6 +4,7 @@ import prisma from '@/lib/prisma'
 import { IdeaFormSchemaType } from '@/components/ideaForm'
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
+import { revalidatePath } from 'next/cache'
 
 export type ActionResponse =
   | { success: true }
@@ -34,6 +35,8 @@ export default async function addIdeaAction(
         userId: payload.userId,
       },
     })
+
+    revalidatePath('/dashboard')
 
     return { success: true }
   } catch (error) {
